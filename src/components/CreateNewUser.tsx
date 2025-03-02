@@ -28,7 +28,7 @@ export const CreateNewUser = () => {
 
   return (
     <Card className="w-full p-5">
-      <h2 className="text-2xl font-semibold mb-6">Crear nuevo usuario</h2>
+      <h2 className="text-2xl font-semibold">Crear nuevo usuario</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <TextInput name="name" placeholder="John Doe" />
         <TextInput name="email" placeholder="john.doe@example.com" />
