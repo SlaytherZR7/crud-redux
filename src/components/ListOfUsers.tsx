@@ -1,8 +1,11 @@
 import { Badge, Table } from 'flowbite-react';
 import { useAppSelector } from '../hooks/store';
+import { useUserActions } from '../hooks/useUserActions';
 
 export const ListOfUsers = () => {
   const users = useAppSelector((state) => state.users);
+  const { removeUser } = useUserActions();
+
   return (
     <div className="overflow-x-auto">
       <div className="flex items-center mb-4 gap-1">
@@ -53,7 +56,7 @@ export const ListOfUsers = () => {
                     />
                   </svg>
                 </button>
-                <button onClick={() => {}} type="button">
+                <button onClick={() => removeUser(user.id)} type="button">
                   <svg
                     aria-label="Remove element"
                     fill="none"
