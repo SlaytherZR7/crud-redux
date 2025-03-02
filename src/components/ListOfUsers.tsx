@@ -1,4 +1,4 @@
-import { Table } from 'flowbite-react';
+import { Badge, Table } from 'flowbite-react';
 
 const users = [
   { id: 1, name: 'John Doe', email: 'john.doe@example.com', github: 'johndoe' },
@@ -9,6 +9,10 @@ const users = [
 export const ListOfUsers = () => {
   return (
     <div className="overflow-x-auto">
+      <div className="flex items-center mb-4 gap-1">
+        <span>Usuarios:</span>
+        <Badge>{users.length}</Badge>
+      </div>
       <Table striped>
         <Table.Head>
           <Table.HeadCell>Id</Table.HeadCell>
