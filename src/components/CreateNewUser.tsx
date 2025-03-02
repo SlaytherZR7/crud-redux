@@ -9,7 +9,6 @@ export const CreateNewUser = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setResult(null);
-
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -17,7 +16,19 @@ export const CreateNewUser = () => {
     const email = formData.get('email') as string;
     const github = formData.get('github') as string;
 
-    if (!name || !email || !github) {
+    // Validate name
+    if (!name || name.trim() === '') {
+      return setResult('ko');
+    }
+
+    // Validate email with regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      return setResult('ko');
+    }
+
+    // Validate github username
+    if (!github || github.trim() === '') {
       return setResult('ko');
     }
 
@@ -30,9 +41,14 @@ export const CreateNewUser = () => {
     <Card className="w-full p-5">
       <h2 className="text-2xl font-semibold">Crear nuevo usuario</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <TextInput name="name" placeholder="John Doe" />
-        <TextInput name="email" placeholder="john.doe@example.com" />
-        <TextInput name="github" placeholder="johndoe" />
+        <TextInput name="name" placeholder="John Doe" required />
+        <TextInput
+          name="email"
+          type="email"
+          placeholder="john.doe@example.com"
+          required
+        />
+        <TextInput name="github" placeholder="johndoe" required />
         <div>
           <Button type="submit" className="justify-self-center">
             Crear usuario
