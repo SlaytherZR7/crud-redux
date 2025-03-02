@@ -1,4 +1,4 @@
-import { Badge, Button, Card, TextInput } from 'flowbite-react';
+import { Button, Card, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { useUserActions } from '../hooks/useUserActions';
 
@@ -49,23 +49,9 @@ export const CreateNewUser = () => {
           required
         />
         <TextInput name="github" placeholder="johndoe" required />
-        <div>
-          <Button type="submit" className="justify-self-center">
-            Crear usuario
-          </Button>
-          <span>
-            {result === 'ok' && (
-              <Badge color="info" className="ml-4">
-                Usuario creado
-              </Badge>
-            )}
-            {result === 'ko' && (
-              <Badge className="ml-4" color="failure">
-                Error al crear usuario
-              </Badge>
-            )}
-          </span>
-        </div>
+        <Button type="submit" className="self-center w-fit">
+          Crear usuario
+        </Button>
       </form>
     </Card>
   );
