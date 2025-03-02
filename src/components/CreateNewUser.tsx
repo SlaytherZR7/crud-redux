@@ -1,5 +1,6 @@
 import { Button, Card, TextInput } from 'flowbite-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { useUserActions } from '../hooks/useUserActions';
 
 export const CreateNewUser = () => {
@@ -18,28 +19,38 @@ export const CreateNewUser = () => {
 
     // Validate name
     if (!name || name.trim() === '') {
+      toast.error('El nombre es obligatorio');
       return setResult('ko');
     }
 
     // Validate email with regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
+      toast.error('El email no es válido');
       return setResult('ko');
     }
 
     // Validate github username
     if (!github || github.trim() === '') {
+      toast.error('El nombre de usuario de GitHub es obligatorio');
       return setResult('ko');
     }
 
     addUser({ name, email, github });
     setResult('ok');
+    toast.success('Usuario creado correctamente');
     form.reset();
   };
 
   return (
     <Card className="w-full p-5">
       <h2 className="text-2xl font-semibold">Crear nuevo usuario</h2>
+      {result === 'ok' && (
+        <p className="text-green-500 mb-2">Usuario creado correctamente</p>
+      )}
+      {result === 'ko' && (
+        <p className="text-red-500 mb-2">Error al crear usuario</p>
+      )}
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <TextInput name="name" placeholder="John Doe" required />
         <TextInput
