@@ -1,12 +1,8 @@
 import { Badge, Table } from 'flowbite-react';
-
-const users = [
-  { id: 1, name: 'John Doe', email: 'john.doe@example.com', github: 'johndoe' },
-  { id: 1, name: 'John Doe', email: 'john.doe@example.com', github: 'johndoe' },
-  { id: 1, name: 'John Doe', email: 'john.doe@example.com', github: 'johndoe' },
-];
+import { useAppSelector } from '../hooks/store';
 
 export const ListOfUsers = () => {
+  const users = useAppSelector((state) => state.users);
   return (
     <div className="overflow-x-auto">
       <div className="flex items-center mb-4 gap-1">
