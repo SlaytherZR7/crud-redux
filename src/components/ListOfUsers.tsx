@@ -1,4 +1,4 @@
-import { Badge, Table } from 'flowbite-react';
+import { Badge, Card, Table } from 'flowbite-react';
 import { useAppSelector } from '../hooks/store';
 import { useUserActions } from '../hooks/useUserActions';
 
@@ -7,10 +7,13 @@ export const ListOfUsers = () => {
   const { removeUser } = useUserActions();
 
   return (
-    <div className="overflow-x-auto">
-      <div className="flex items-center mb-4 gap-1">
-        <span>Usuarios:</span>
-        <Badge>{users.length}</Badge>
+    <Card className="overflow-x-auto w-full p-5">
+      <div className="flex items-center justify-between gap-1">
+        <h2 className="text-2xl font-semibold">Lista de usuarios</h2>
+        <div className="flex items-center gap-2">
+          <span>Usuarios:</span>
+          <Badge>{users.length}</Badge>
+        </div>
       </div>
       <Table striped>
         <Table.Head>
@@ -78,6 +81,6 @@ export const ListOfUsers = () => {
           ))}
         </Table.Body>
       </Table>
-    </div>
+    </Card>
   );
 };
