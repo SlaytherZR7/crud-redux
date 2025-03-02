@@ -1,4 +1,5 @@
 import { Badge, Card, Table } from 'flowbite-react';
+import { toast } from 'sonner';
 import { useAppSelector } from '../hooks/store';
 import { useUserActions } from '../hooks/useUserActions';
 
@@ -59,7 +60,13 @@ export const ListOfUsers = () => {
                     />
                   </svg>
                 </button>
-                <button onClick={() => removeUser(user.id)} type="button">
+                <button
+                  onClick={() => {
+                    removeUser(user.id);
+                    toast.success('Usuario eliminado correctamente');
+                  }}
+                  type="button"
+                >
                   <svg
                     aria-label="Remove element"
                     fill="none"
